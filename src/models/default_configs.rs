@@ -45,7 +45,7 @@ pub const CONCRETE_SYNTAX_QUERY_PREFIX: &str = "cs ";
 pub(crate) const UNUSED_CODE_PATH: &str = "/dev/null";
 
 pub fn default_number_of_ancestors_in_parent_scope() -> u8 {
-  4
+  2 // More conservative scope propagation to prevent erroneous propagation across lambda closure boundaries
 }
 
 pub fn default_language() -> String {
