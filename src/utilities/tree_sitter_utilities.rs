@@ -291,6 +291,11 @@ pub(crate) fn get_context(prev_node: Node<'_>, source_code: String, count: u8) -
   if count > 0 {
     output.push(prev_node);
     if let Some(parent) = get_non_str_eq_parent(prev_node, source_code.to_string()) {
+      // Check if we're inside a Kotlin lambda/closure - terminate early to prevent hanging
+      if parent.kind() == "lambda_literal" {
+        debug!("Terminating ancestor traversal at Kotlin lambda_literal to prevent infinite loop");
+        return output;
+      }
       output.extend(get_context(parent, source_code, count - 1));
     }
   }

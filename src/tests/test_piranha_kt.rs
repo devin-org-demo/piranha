@@ -45,4 +45,9 @@ create_rewrite_tests! {
         "namespace" => "some_long_name"
       }, cleanup_comments= true;
   test_file_scoped_chain_rules: "file_scoped_chain_rules",  1;
+  test_kotlin_closure_propagation: "kotlin_closure_test", 1, substitutions= substitutions! {
+    "stale_flag_name" => "STALE_FLAG",
+    "treated"=>  "true",
+    "treated_complement" => "false"
+  }, delete_file_if_empty= false;
 }
